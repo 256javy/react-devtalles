@@ -1,16 +1,12 @@
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
+
+import styles from './ItemCounter.module.css'
 
 interface MyProps {
     itemName: string;
     quantity?: number;
 };
 
-const styles: CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    marginTop: 10,
-}
 
 export const ItemCounter = ({ itemName, quantity = 1 }: MyProps) => {
     const [count, setCount] = useState(quantity)
@@ -25,8 +21,15 @@ export const ItemCounter = ({ itemName, quantity = 1 }: MyProps) => {
     }
 
     return (
-        <section style={styles}>
-            <span>{itemName}</span>
+        <section
+            className={styles.itemRow} >
+            <span
+                className={styles["item-text"]}
+                style={{
+
+                    color: count === 1 ? 'red' : 'black'
+                }}
+            >{itemName}</span>
             <button
                 onClick={handleAdd}
             >+1</button>
